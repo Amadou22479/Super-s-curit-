@@ -1,0 +1,279 @@
+<!DOCTYPE html>
+<html lang="fr"><head><meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Cyber Académie — apprendre la cybersécurité</title>
+<style>
+:root{box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px);
+--bg:#eef2ee;--fg:#132118;--mut:#5b6e63;--card:#ffffff;--ac:#0f6b4d;--ac2:#c1602a;--bd:#d3ddd5;--ok:#0f6b4d;--ko:#a3372c;--code:#e3ece4}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#0a1310;--fg:#eaf3ec;--mut:#93aa9b;--card:#101c15;--ac:#4fe0a3;--ac2:#f0a05f;--bd:#213629;--ok:#4fe0a3;--ko:#ff9a86;--code:#152420}}
+:root[data-theme="dark"]{--bg:#0a1310;--fg:#eaf3ec;--mut:#93aa9b;--card:#101c15;--ac:#4fe0a3;--ac2:#f0a05f;--bd:#213629;--ok:#4fe0a3;--ko:#ff9a86;--code:#152420}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}
+*,*:before,*:after{box-sizing:inherit}
+body{margin:0;background:
+  radial-gradient(55vw 38vh at 92% -8%, color-mix(in srgb, var(--ac) 14%, transparent), transparent),
+  radial-gradient(45vw 30vh at -5% 15%, color-mix(in srgb, var(--ac2) 10%, transparent), transparent),
+  var(--bg);
+  color:var(--fg);font:16px/1.6 Georgia,"Times New Roman",serif}
+main{max-width:760px;margin:0 auto;padding:28px 16px 60px}
+header.hero{border-bottom:1px solid var(--bd);padding-bottom:18px;margin-bottom:18px}
+.eyebrow{font:600 13px "Trebuchet MS",Verdana,sans-serif;color:var(--ac2);margin:0 0 4px}
+h1{font:800 clamp(30px,7.5vw,46px)/1.05 "Trebuchet MS",Verdana,sans-serif;margin:0 0 10px;letter-spacing:-.01em}
+.sub{color:var(--mut);margin:0 0 4px;max-width:60ch}
+.scorewrap{display:flex;align-items:center;gap:10px;margin-top:14px}
+.bar{flex:1;height:8px;border-radius:6px;background:var(--bd);overflow:hidden}
+.bar>i{display:block;height:100%;background:linear-gradient(90deg,var(--ac),var(--ac2));width:0%;transition:width .4s ease}
+#sc{font:700 14px "Trebuchet MS",Verdana,sans-serif;color:var(--ac);white-space:nowrap}
+nav{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:18px;position:sticky;top:env(safe-area-inset-top,0px);background:var(--bg);padding:8px 0;z-index:2}
+nav button{font:600 14px "Trebuchet MS",Verdana,sans-serif;border:1px solid var(--bd);background:var(--card);color:var(--fg);padding:9px 14px;border-radius:999px;cursor:pointer;transition:background .15s,color .15s,border-color .15s}
+nav button[aria-pressed=true]{background:var(--ac);border-color:var(--ac);color:var(--bg)}
+nav button:hover{border-color:var(--ac)}
+button:focus-visible,summary:focus-visible{outline:3px solid var(--ac);outline-offset:2px}
+.catlabel{font:700 13px "Trebuchet MS",Verdana,sans-serif;color:var(--mut);text-transform:none;margin:22px 2px 8px;padding-top:6px;border-top:1px solid var(--bd)}
+.catlabel:first-of-type{border-top:none;margin-top:4px}
+details{background:var(--card);border:1px solid var(--bd);border-radius:12px;margin:10px 0;overflow:hidden}
+details[open]{border-color:var(--ac)}
+summary{cursor:pointer;padding:14px 16px;font:700 17px "Trebuchet MS",Verdana,sans-serif;display:flex;align-items:center;gap:10px;list-style:none}
+summary::-webkit-details-marker{display:none}
+summary .dot{width:9px;height:9px;border-radius:50%;background:var(--bd);flex:none}
+summary .dot.done{background:var(--ok)}
+.body{padding:0 16px 16px;border-top:1px solid var(--bd);padding-top:12px}
+code,pre{background:var(--code);border-radius:6px;font:14px Consolas,monospace}
+code{padding:1px 5px}pre{padding:12px;overflow-x:auto;line-height:1.5}
+.ex{border-left:3px solid var(--ac2);padding:4px 14px;margin:14px 0;color:var(--mut);background:color-mix(in srgb, var(--ac2) 6%, transparent);border-radius:0 8px 8px 0}
+.q{margin-top:16px;padding-top:12px;border-top:1px dashed var(--bd)}
+.q>b{font:700 15px "Trebuchet MS",Verdana,sans-serif}
+.opt{display:block;width:100%;text-align:left;margin:6px 0;font:15px Georgia,serif;border:1.5px solid var(--bd);background:var(--bg);color:var(--fg);padding:9px 12px;border-radius:9px;cursor:pointer}
+.opt:hover{border-color:var(--ac)}
+.opt.ok{border-color:var(--ok);color:var(--ok);background:color-mix(in srgb, var(--ok) 8%, var(--bg))}
+.opt.ko{border-color:var(--ko);color:var(--ko);background:color-mix(in srgb, var(--ko) 8%, var(--bg))}
+.fb{margin:8px 0 0;font-size:14.5px;color:var(--mut)}
+footer{color:var(--mut);font-size:13px;margin-top:30px;text-align:center}
+</style></head><body><main>
+<header class="hero">
+<p class="eyebrow">Cyber Académie</p>
+<h1>Apprendre à protéger, pas à nuire</h1>
+<p class="sub">Cours, commandes réelles, exemples et exercices — du débutant à l'expert, uniquement dans un cadre défensif et légal.</p>
+<div class="scorewrap"><div class="bar"><i id="bar"></i></div><span id="sc"></span></div>
+</header>
+<nav id="tabs"></nav><div id="mods"></div>
+<footer>Par Ban · Contenu strictement défensif · aucune technique d'attaque contre des tiers non autorisés</footer>
+</main>
+<script>
+const L={
+debutant:["Débutant",[
+["La triade CIA : ce qu'on protège",
+"<p>Toute la cybersécurité protège trois choses : la <b>Confidentialité</b> (seuls les bons accès lisent), l'<b>Intégrité</b> (les données ne sont pas modifiées en douce) et la <b>Disponibilité</b> (le service marche quand on en a besoin). S'y ajoutent les notions de <b>menace</b> (ce qui peut nuire), <b>vulnérabilité</b> (une faiblesse) et <b>risque</b> (probabilité × impact).</p>",
+"Une boutique en ligne piratée : le vol des numéros de carte casse la confidentialité, la modification des prix casse l'intégrité, un site saturé casse la disponibilité.",
+"Un ransomware chiffre tes fichiers. Quel principe est attaqué en premier ?",["Confidentialité","Disponibilité","Non-répudiation"],1,"Tu ne peux plus accéder à tes données : c'est la disponibilité."],
+["Mots de passe et double authentification",
+"<p>Un bon mot de passe est <b>long</b> (12+ caractères, une phrase de passe), <b>unique</b> par compte et stocké dans un <b>gestionnaire de mots de passe</b>. Active la <b>double authentification (MFA)</b> partout : une application d'authentification ou une clé physique vaut mieux qu'un SMS.</p>",
+"Si un site est piraté et que tu réutilises le même mot de passe ailleurs, les attaquants testent ces identifiants sur tes autres comptes (<i>credential stuffing</i>).",
+"Quelle option est la plus solide ?",["Prenom2010!","Une phrase de 5 mots aléatoires, unique au compte","Le même mot de passe fort partout"],1,"Longueur et unicité battent la complexité apparente."],
+["Reconnaître le phishing",
+"<p>Le phishing pousse à agir vite : lien, pièce jointe ou appel. Signes : expéditeur ou domaine légèrement faux, urgence, menace, demande de mot de passe ou de code, fautes, lien dont l'adresse réelle diffère du texte. Réflexe : ne clique pas, ouvre le site toi-même, vérifie par un autre canal, signale.</p>",
+"Message : « Votre compte bancaire sera bloqué dans 1 h, cliquez ici ». Le lien mène à <code>banque-securite-login.example</code>, pas au domaine officiel.",
+"Un SMS de ta « banque » te demande le code reçu par SMS. Que fais-tu ?",["Je donne le code, c'est urgent","J'ignore et je contacte ma banque via l'appli officielle","Je réponds pour vérifier"],1,"Un code à usage unique ne se communique jamais. C'est la cible du fraudeur."],
+["Malwares et bonnes habitudes",
+"<p>Un <b>malware</b> est un logiciel malveillant : virus, ver, cheval de Troie, ransomware, spyware. Défense de base : mises à jour système et applis, antivirus/EDR, sources officielles uniquement, moindres privilèges (pas de compte admin au quotidien), <b>sauvegardes 3-2-1</b> (3 copies, 2 supports, 1 hors site).</p>",
+"Un jeu « crackké » téléchargé sur un forum installe un cheval de Troie qui vole les sessions de navigateur.",
+"Quelle mesure protège le mieux contre la perte de données par ransomware ?",["Un fond d'écran sombre","Des sauvegardes hors ligne testées","Payer la rançon vite"],1,"Une sauvegarde isolée et testée permet de restaurer sans payer."],
+["Premières commandes utiles (Linux/Windows)",
+"<p>Quelques commandes simples pour observer ta propre machine.</p><pre>whoami            # qui je suis\nls -la            # lister les fichiers cachés inclus\nhistory            # commandes déjà tapées\nping example.com   # tester la connexion\nipconfig /all      # Windows : voir son IP\nip a               # Linux : voir son IP</pre>",
+"<code>ping</code> confirme juste que ta machine sait joindre un hôte ; ce n'est pas un outil d'attaque.",
+"Quelle commande affiche ton adresse IP sous Linux ?",["ip a","whoami","history"],0,"« ip a » liste les interfaces réseau et leurs adresses."],
+["Sécuriser son smartphone",
+"<p>Verrouillage par code long (pas de schéma simple), mises à jour automatiques, applis uniquement via les stores officiels, vérifier les permissions demandées (une lampe torche n'a pas besoin de tes contacts), chiffrement activé par défaut sur iOS/Android récents, localisation à distance activée pour effacer en cas de vol.</p>",
+"Une appli « économiseur de batterie » qui demande l'accès aux SMS et aux contacts est suspecte : ces permissions ne correspondent pas à sa fonction.",
+"Une appli lampe torche demande l'accès à tes contacts. Que fais-tu ?",["Je refuse ou je désinstalle","J'accepte, c'est plus pratique","Je l'ignore"],0,"Une permission sans rapport avec la fonction est un signal d'alerte."],
+["Vie privée et réseaux sociaux",
+"<p>Limite ce que tu publies (localisation en temps réel, documents, enfants), vérifie les paramètres de confidentialité régulièrement, méfie-toi des quiz/jeux qui demandent des autorisations d'accès au compte, et n'accepte pas les demandes d'inconnus qui te poussent à cliquer vite.</p>",
+"Un « quiz » Facebook qui demande à publier en ton nom peut ensuite spammer tes contacts avec des liens malveillants.",
+"Que vérifier avant d'autoriser une appli tierce sur un réseau social ?",["Rien, c'est un jeu","Les permissions qu'elle demande","Le nombre de likes"],1,"Les permissions déterminent ce que l'appli peut faire avec ton compte."],
+["Navigateur et achats en ligne",
+"<p>Vérifie le cadenas HTTPS et le nom de domaine avant de payer, utilise une carte virtuelle ou à plafond limité pour les achats en ligne, évite le Wi-Fi public pour les paiements, garde le navigateur à jour et utilise un bloqueur de pub réputé pour limiter le malvertising.</p>",
+"Un site de vente avec une adresse bizarre comme <code>amaz0n-promo.example</code> imite un vrai domaine pour tromper l'œil.",
+"Que vérifier en priorité avant de payer sur un site ?",["Le nombre d'avis","Le nom de domaine exact et le HTTPS","La couleur du site"],1,"Un domaine légèrement modifié est le signe classique d'un faux site marchand."],
+["Sauvegardes et plan de récupération personnel",
+"<p>Règle 3-2-1 : 3 copies de tes données, sur 2 supports différents, dont 1 hors site (cloud ou disque externe ailleurs). Teste régulièrement la restauration : une sauvegarde jamais testée n'est pas fiable. Chiffre les sauvegardes sensibles.</p>",
+"Une seule copie sur le même disque que l'original ne protège ni d'une panne ni d'un ransomware qui chiffre tout ce qui est connecté.",
+"Pourquoi garder une copie hors site ?",["Pour économiser de l'espace","Pour survivre à un vol, incendie ou ransomware local","Ce n'est pas utile"],1,"Une copie hors site résiste aux sinistres physiques et aux ransomwares qui chiffrent tout ce qui est branché."],
+["Comprendre les mises à jour",
+"<p>Une mise à jour corrige souvent des failles de sécurité découvertes après la sortie du logiciel. Activer les mises à jour automatiques réduit la fenêtre pendant laquelle un attaquant peut exploiter une faille connue. Ne repousse pas indéfiniment les redémarrages demandés.</p>",
+"Le rançongiciel WannaCry (2017) a exploité une faille Windows corrigée deux mois avant l'attaque : les machines non mises à jour ont été touchées en masse.",
+"Pourquoi une faille corrigée reste dangereuse si tu ne mets pas à jour ?",["Elle disparaît toute seule","Le correctif révèle la faille aux attaquants, qui ciblent les machines non mises à jour","Ce n'est jamais dangereux"],1,"La publication du correctif documente souvent la faille, ce qui facilite son exploitation sur les systèmes en retard."],
+["Le chiffrement expliqué simplement",
+"<p>Chiffrer une donnée la rend illisible sans la bonne clé. Sur ton téléphone/ordinateur, active le chiffrement du disque (BitLocker, FileVault, chiffrement Android par défaut). Pour discuter en privé, préfère une messagerie avec chiffrement de bout en bout (le message n'est lisible que par toi et le destinataire, pas par l'opérateur).</p>",
+"Un ordinateur volé mais chiffré protège les fichiers du voleur, même s'il retire le disque dur pour le lire ailleurs.",
+"Que garantit le chiffrement de bout en bout d'une messagerie ?",["Que le message est plus rapide à envoyer","Que seuls l'expéditeur et le destinataire peuvent lire le contenu","Que le message ne peut jamais être supprimé"],1,"Même le fournisseur du service ne peut normalement pas lire le contenu chiffré de bout en bout."],
+["Vocabulaire essentiel de la cybersécurité",
+"<p><b>Faille (vulnérabilité)</b> : faiblesse exploitable. <b>Exploit</b> : moyen technique de l'exploiter. <b>Zero-day</b> : faille inconnue de l'éditeur, sans correctif. <b>Patch</b> : correctif. <b>Attaque par force brute</b> : essayer toutes les combinaisons possibles. <b>Ingénierie sociale</b> : manipuler une personne plutôt qu'une machine.</p>",
+"Une faille « zero-day » activement exploitée oblige les éditeurs à publier un correctif d'urgence, parfois en quelques heures.",
+"Que signifie « zero-day » ?",["Une faille corrigée depuis zéro jour","Une faille inconnue de l'éditeur, sans correctif disponible","Un virus qui s'auto-détruit"],1,"Zero-day signifie que l'éditeur a eu zéro jour pour préparer un correctif avant que la faille soit connue/exploitée."],
+["Sécuriser les enfants et la famille en ligne",
+"<p>Active le contrôle parental adapté à l'âge, discute ouvertement des règles (pas d'infos personnelles à des inconnus, pas de rendez-vous seul avec quelqu'un rencontré en ligne), utilise des comptes enfants séparés avec des permissions limitées, et garde le dialogue ouvert plutôt que la seule surveillance technique.</p>",
+"Un enfant qui reçoit un message d'un « ami de jeu » demandant son adresse doit savoir qu'il ne faut jamais la donner et en parler à un adulte.",
+"Quelle est la meilleure combinaison pour protéger un enfant en ligne ?",["Uniquement la surveillance technique","Contrôle parental adapté et dialogue ouvert","Aucune règle, la confiance suffit"],1,"La technique seule ne remplace pas l'éducation et le dialogue."],
+["Achats et wallets numériques",
+"<p>Un wallet numérique (Apple Pay, Google Pay) ne partage pas ton numéro de carte réel au commerçant, ce qui réduit les risques en cas de piratage du site. Pour la cryptomonnaie, retiens qu'un « seed phrase » (phrase de récupération) ne doit jamais être tapée sur un site ou partagée : elle donne un accès total et irréversible aux fonds.</p>",
+"Un faux support « portefeuille crypto » qui demande ta phrase de récupération pour « vérifier ton compte » est une arnaque classique et vide le portefeuille en quelques secondes.",
+"Faut-il donner sa phrase de récupération crypto à un support technique ?",["Oui si le support semble officiel","Jamais, aucun support légitime ne la demande","Seulement par téléphone"],1,"Aucun service légitime ne demande jamais la phrase de récupération : elle reste strictement personnelle."],
+["Reconnaître une arnaque en ligne courante",
+"<p>Faux gains (loterie jamais jouée), fausses offres d'emploi demandant de l'argent d'avance, faux support technique alarmiste, romance scam (relation en ligne qui finit par demander de l'argent). Signal commun : urgence, demande d'argent ou d'informations sensibles, promesse trop belle pour être vraie.</p>",
+"Une personne rencontrée en ligne depuis peu, jamais vue en visio, qui demande soudain un virement pour une « urgence » est un schéma classique de romance scam.",
+"Quel est le signal d'alerte le plus fiable dans une arnaque ?",["Un joli profil photo","Une demande d'argent ou d'urgence inhabituelle","Beaucoup de messages"],1,"La demande d'argent ou l'urgence artificielle est le dénominateur commun de la plupart des arnaques."],
+["Créer un plan de sécurité personnel simple",
+"<p>Liste tes comptes importants, active MFA partout où c'est possible, utilise un gestionnaire de mots de passe, planifie une sauvegarde mensuelle, vérifie une fois par trimestre les appareils et sessions connectés à tes comptes principaux (Google, Apple, réseaux sociaux) et révoque ce que tu ne reconnais pas.</p>",
+"Dans les paramètres de sécurité Google, la page « Vos appareils » montre chaque session active : une session inconnue doit être déconnectée immédiatement et le mot de passe changé.",
+"À quelle fréquence vérifier les sessions/appareils connectés à un compte important ?",["Jamais, ce n'est pas nécessaire","Régulièrement, par exemple chaque trimestre","Une seule fois à la création du compte"],1,"Une vérification régulière permet de détecter un accès non autorisé avant qu'il ne cause des dégâts."]
+]],
+intermediaire:["Intermédiaire",[
+["Réseaux : TCP/IP, ports, DNS, pare-feu",
+"<p>Les données circulent en paquets (modèle OSI/TCP-IP). Un <b>port</b> identifie un service : 22 SSH, 53 DNS, 80 HTTP, 443 HTTPS, 3389 RDP. Le <b>DNS</b> traduit les noms en IP. Un <b>pare-feu</b> filtre selon des règles ; principe : tout refuser par défaut, autoriser le strict nécessaire. Segmenter le réseau (VLAN) limite la propagation d'une intrusion.</p>",
+"<pre>ss -tulpn   # Linux : ports en écoute sur ta machine</pre>Un port RDP exposé sur Internet est une cible classique de force brute.",
+"Que signifie « deny by default » pour un pare-feu ?",["Tout est autorisé sauf le listé","Tout est bloqué sauf le explicitement autorisé","Seul le port 80 est ouvert"],1,"On liste ce qui est permis et le reste est refusé."],
+["Cryptographie : hash, chiffrement, TLS",
+"<p><b>Hash</b> (SHA-256) : empreinte à sens unique, pour vérifier l'intégrité. Pour les mots de passe, utilise un hash lent et salé (Argon2, bcrypt). <b>Chiffrement symétrique</b> (AES) : une clé, rapide. <b>Asymétrique</b> (RSA, ECC) : clé publique/privée, sert aux échanges de clés et signatures. <b>TLS</b> combine les deux pour HTTPS.</p>",
+"<pre>echo -n \"bonjour\" | sha256sum</pre>Changer une seule lettre change totalement l'empreinte.",
+"Comment stocker correctement un mot de passe utilisateur ?",["Chiffré en AES avec une clé dans le code","Haché avec Argon2 ou bcrypt et un sel","En clair dans la base"],1,"Un hash lent et salé ne se « déchiffre » pas et résiste aux tables pré-calculées."],
+["Sécurité web : OWASP Top 10",
+"<p>L'OWASP liste les risques majeurs des applis web. Injection SQL : l'entrée utilisateur est interprétée comme du code. Défense : <b>requêtes paramétrées</b>. XSS : du script injecté dans une page. Défense : <b>échapper la sortie</b> et une CSP. CSRF : action forcée via la session d'un utilisateur. Défense : jeton anti-CSRF, cookies SameSite. Ajoute : contrôle d'accès strict côté serveur.</p>",
+"<pre>// À éviter\ndb.query(\"SELECT * FROM users WHERE id=\"+id)\n// Correct\ndb.query(\"SELECT * FROM users WHERE id=?\",[id])</pre>",
+"Quelle est la parade principale à l'injection SQL ?",["Cacher le formulaire","Les requêtes paramétrées","Un captcha"],1,"Les paramètres séparent le code SQL des données."],
+["Linux, permissions et durcissement",
+"<p>Sous Linux, chaque fichier a un propriétaire et des droits <code>rwx</code> pour utilisateur/groupe/autres. <code>chmod 640 f</code> donne lecture-écriture au propriétaire, lecture au groupe, rien aux autres. Durcissement : désactiver les services inutiles, SSH par clé sans login root, mises à jour auto, journaux (<code>/var/log</code>), <code>sudo</code> au lieu de root.</p>",
+"Un fichier de clés en <code>chmod 777</code> peut être lu et modifié par tout utilisateur du système : à corriger en <code>600</code>.",
+"Que donne <code>chmod 600</code> sur un fichier ?",["Lecture-écriture pour le propriétaire seulement","Lecture pour tous","Exécution pour tous"],0,"6 = rw pour le propriétaire, 0 pour les autres."],
+["Commandes d'administration et de surveillance",
+"<p>Ces commandes servent à auditer et durcir <b>tes propres</b> machines.</p><pre># Utilisateurs et droits\nsudo -l                    # ce que sudo t'autorise\nlast                       # derniers logins\ncat /etc/passwd            # comptes existants\n\n# Réseau\nss -tulpn                  # ports en écoute\nsudo nmap -sV localhost    # services sur ta propre machine\nsudo tcpdump -i eth0       # capturer le trafic (analyse)\n\n# Journaux et intégrité\nsudo journalctl -xe        # logs système récents\nsha256sum fichier.iso      # vérifier une empreinte\nsudo ufw enable            # activer le pare-feu (Ubuntu)\nsudo ufw allow 22/tcp      # autoriser un port précis</pre>",
+"<code>nmap -sV localhost</code> te montre ce qu'un attaquant verrait sur TA machine : c'est un audit, pas une attaque, car la cible est toi-même.",
+"Pourquoi lancer nmap uniquement sur localhost ou du matériel qui t'appartient ?",["Parce que c'est plus rapide","Scanner sans autorisation une machine tierce est illégal","Ça n'a pas d'importance"],1,"Scanner un système qui ne t'appartient pas sans autorisation est une infraction dans la plupart des pays."],
+["Wi-Fi et réseaux domestiques",
+"<p>Utilise WPA3 ou WPA2-AES (jamais WEP), change les identifiants par défaut du routeur, désactive WPS, sépare un réseau invité pour les objets connectés, mets à jour le firmware du routeur, désactive l'administration à distance si inutile.</p>",
+"Un routeur avec WPS activé peut être vulnérable à une attaque par force brute sur le code PIN à 8 chiffres, d'où la recommandation de le désactiver.",
+"Quel protocole Wi-Fi faut-il éviter aujourd'hui ?",["WPA3","WPA2-AES","WEP"],2,"WEP est cassé depuis longtemps et se contourne en quelques minutes."],
+["Ingénierie sociale au-delà du phishing",
+"<p>Le <i>vishing</i> (appel téléphonique), le <i>smishing</i> (SMS), le <i>pretexting</i> (faux scénario, ex. « support technique ») et le <i>baiting</i> (clé USB piégée laissée exprès) exploitent la confiance plutôt que la technique. Défense : vérifier l'identité par un canal indépendant, ne jamais brancher un support inconnu, politique claire « on ne demande jamais un mot de passe par téléphone ».</p>",
+"Un faux « support Microsoft » appelle en prétendant détecter un virus et demande un accès à distance : c'est du pretexting classique.",
+"Une clé USB inconnue traîne au bureau. Que fais-tu ?",["Je la branche pour voir ce qu'il y a dedans","Je la remets au service sécurité sans la brancher","Je la garde pour moi"],1,"Une clé USB inconnue peut être un vecteur d'infection délibéré (baiting)."],
+["Sécurité des emails et en-têtes",
+"<p>Les protocoles <b>SPF, DKIM, DMARC</b> vérifient qu'un email vient bien du domaine annoncé et limitent l'usurpation. Regarder l'en-tête complet d'un mail permet de voir le serveur d'envoi réel.</p><pre># Linux : voir les en-têtes bruts d'un mail exporté\ngrep -i 'Received:' mail.eml\ngrep -i 'Authentication-Results' mail.eml</pre>",
+"Un email « De: banque@officiel.com » mais dont l'en-tête Authentication-Results indique <code>spf=fail</code> est probablement usurpé.",
+"Que vérifie DMARC principalement ?",["La taille de la pièce jointe","Que l'email respecte les règles SPF/DKIM du domaine","La couleur du logo"],1,"DMARC s'appuie sur SPF et DKIM pour valider l'expéditeur et décider quoi faire en cas d'échec."],
+["Active Directory et gestion des identités",
+"<p>Dans une entreprise, <b>Active Directory (AD)</b> centralise comptes et permissions. Bonnes pratiques : comptes admin séparés des comptes usage courant, groupes avec moindre privilège, audit des comptes inactifs, politique de mots de passe et verrouillage après échecs, journalisation des connexions.</p><pre># Windows PowerShell, lecture seule sur son propre domaine\nGet-ADUser -Filter * -Properties LastLogonDate\nGet-ADGroupMember \"Domain Admins\"\nnet accounts   # politique de mots de passe locale</pre>",
+"Un compte de service avec des droits d'administrateur du domaine, jamais audité depuis des années, est une cible privilégiée en cas de compromission.",
+"Pourquoi séparer compte admin et compte usage courant ?",["Pour avoir deux mots de passe à retenir","Pour limiter les dégâts si le compte usage courant est compromis","Ce n'est pas nécessaire"],1,"Si le compte quotidien est piraté, l'attaquant n'a pas automatiquement les droits admin."],
+["Sécurité des conteneurs et virtualisation",
+"<p>Un conteneur partage le noyau de l'hôte : isolation plus faible qu'une VM. Bonnes pratiques : images officielles et à jour, utilisateur non-root dans le conteneur, scan d'image avant déploiement, limiter les capacités Linux exposées, pas de secrets en clair dans l'image.</p><pre>docker scan mon-image           # ancienne commande de scan\ndocker run --user 1000 monimage # éviter le root dans le conteneur\ndocker ps --no-trunc            # inspecter les conteneurs actifs</pre>",
+"Une image Docker qui tourne en root et expose un port de debug est une porte d'entrée si le conteneur est compromis.",
+"Pourquoi éviter de lancer un conteneur en root ?",["Ça ralentit le conteneur","Une compromission du conteneur limite l'accès à l'hôte si l'utilisateur n'est pas root","Root est obligatoire"],1,"Un utilisateur non privilégié réduit l'impact d'une éventuelle évasion de conteneur."],
+["VPN et anonymisation",
+"<p>Un <b>VPN</b> chiffre le trafic entre ton appareil et un serveur, utile sur un réseau public non fiable ; il ne rend pas anonyme, le fournisseur du VPN voit ton trafic. <b>Tor</b> route le trafic via plusieurs relais pour plus d'anonymat, au prix de la vitesse. Choisis un fournisseur VPN avec politique « no-log » vérifiée et évite les VPN gratuits douteux qui monétisent tes données.</p>",
+"Sur le Wi-Fi gratuit d'un aéroport, un VPN chiffre ta connexion et empêche un attaquant sur le même réseau d'intercepter tes données en clair.",
+"Un VPN gratuit rend-il automatiquement anonyme ?",["Oui, toujours","Non, le fournisseur peut voir et parfois revendre le trafic","Seulement le week-end"],1,"Le VPN déplace la confiance vers son fournisseur ; un service gratuit douteux peut journaliser ou revendre les données."],
+["Journalisation et supervision réseau",
+"<p>Centraliser les logs (syslog, rsyslog) permet de corréler des événements dispersés. Surveiller les échecs d'authentification répétés, les connexions à des heures inhabituelles, les transferts de données volumineux sortants.</p><pre>sudo tail -f /var/log/auth.log       # tentatives de connexion en direct (Debian/Ubuntu)\nsudo grep 'Failed password' /var/log/auth.log | wc -l   # compter les échecs\nsudo netstat -tupn                    # connexions actives et process associés</pre>",
+"Un pic soudain de « Failed password » sur SSH depuis une IP inconnue est le signe classique d'une tentative de force brute à bloquer (fail2ban, pare-feu).",
+"Que surveiller en priorité dans les logs d'authentification ?",["Les connexions réussies habituelles","Les échecs répétés et les horaires/IP inhabituels","La taille du fichier de log"],1,"Les échecs répétés et les anomalies horaires/géographiques signalent une tentative d'intrusion."],
+["Sécurité des API et authentification",
+"<p>Une API doit authentifier (clé API, OAuth2, JWT) et autoriser chaque requête, limiter le débit (<i>rate limiting</i>) contre les abus, valider strictement les entrées, et ne jamais exposer d'informations sensibles dans les messages d'erreur. Un jeton JWT doit avoir une expiration courte et être vérifié côté serveur, pas seulement décodé côté client.</p>",
+"Une API qui accepte n'importe quel jeton sans vérifier sa signature laisse un attaquant forger un jeton admin en modifiant simplement le contenu décodé.",
+"Pourquoi limiter le débit (rate limiting) d'une API ?",["Pour économiser de l'électricité","Pour freiner les abus comme le bourrage d'identifiants ou le déni de service","Ce n'est pas utile"],1,"Le rate limiting ralentit les attaques automatisées comme le credential stuffing."],
+["Segmentation réseau et VLAN",
+"<p>Séparer le réseau en zones (utilisateurs, serveurs, invités, IoT) limite la propagation d'une intrusion : un appareil compromis dans le VLAN invité ne peut pas atteindre directement les serveurs sensibles. Une <b>DMZ</b> isole les services exposés à Internet (site web) du réseau interne.</p><pre># Exemple de règle de pare-feu Linux (nftables)\nsudo nft add rule inet filter forward ip saddr 192.168.20.0/24 drop   # bloque le VLAN invité vers le reste</pre>",
+"Un objet connecté (caméra IP) compromis sur le même réseau que les postes de travail peut servir de rebond ; le placer sur un VLAN isolé limite ce risque.",
+"Pourquoi isoler les objets connectés (IoT) sur un VLAN séparé ?",["Pour qu'ils aillent plus vite sur Internet","Pour limiter les dégâts s'ils sont compromis, souvent mal sécurisés","Ce n'est pas nécessaire"],1,"Les objets IoT sont souvent peu mis à jour ; les isoler réduit le risque de rebond vers le réseau principal."],
+["Politique de sécurité et sensibilisation",
+"<p>Une politique de sécurité écrite (mots de passe, usage des appareils, BYOD, réponse à incident) donne un cadre clair. La sensibilisation régulière (simulations de phishing internes, formations courtes) réduit le risque humain, souvent le premier facteur d'incident. Un canal simple pour signaler un doute (bouton « signaler phishing ») augmente la détection précoce.</p>",
+"Une entreprise qui envoie un faux email de phishing test à ses employés et forme ceux qui cliquent réduit le taux de clic réel de 30 à 5 % en quelques mois en moyenne.",
+"Quel est l'objectif principal d'une simulation de phishing interne ?",["Punir les employés","Former et mesurer la vigilance pour réduire le risque réel","Remplacer l'antivirus"],1,"La simulation est un outil de formation continue, pas de sanction."],
+["Sécurité mobile en entreprise (MDM)",
+"<p>La gestion des appareils mobiles (<b>MDM</b>) permet d'imposer un chiffrement, un code de verrouillage, l'effacement à distance en cas de perte, et de séparer les données pro/perso (conteneurisation). Politique BYOD claire : ce que l'entreprise peut voir/effacer sur un appareil personnel doit être défini par contrat.</p>",
+"Un employé qui perd son téléphone professionnel géré par MDM peut le faire effacer à distance avant qu'un voleur n'accède aux emails d'entreprise.",
+"Que permet un effacement à distance via MDM en cas de vol ?",["Retrouver le voleur","Supprimer les données sensibles avant qu'elles soient exploitées","Localiser le voleur en temps réel"],1,"L'effacement à distance protège la confidentialité des données même si l'appareil physique est perdu."]
+]],
+expert:["Expert",[
+["Méthodologie de test d'intrusion (cadre légal)",
+"<p>Un pentest se fait <b>uniquement avec autorisation écrite</b> et périmètre défini. Phases : cadrage, reconnaissance, analyse des vulnérabilités, exploitation contrôlée, post-exploitation limitée, <b>rapport</b> priorisé (CVSS) avec remédiations, puis re-test. Référentiels : PTES, OWASP WSTG, NIST SP 800-115. Entraîne-toi sur des labs légaux (TryHackMe, HackTheBox, DVWA).</p>",
+"Un rapport utile décrit : l'impact métier, la preuve reproductible, la gravité et la correction recommandée, pas seulement la faille.",
+"Quel document est indispensable avant tout test d'intrusion ?",["Une autorisation écrite avec périmètre","Un antivirus à jour","Un compte admin"],0,"Sans autorisation, c'est une infraction pénale."],
+["Blue team : détection, SIEM et MITRE ATT&CK",
+"<p>Le <b>SOC</b> collecte les journaux dans un <b>SIEM</b>, corrèle les événements et déclenche des alertes. <b>MITRE ATT&CK</b> catalogue les tactiques et techniques des attaquants (accès initial, persistance, mouvement latéral…) : on l'utilise pour mesurer sa couverture de détection. Le <i>threat hunting</i> cherche proactivement ce que les alertes ont manqué. Réduis le bruit : une alerte doit être actionnable.</p>",
+"Règle : plus de 10 échecs de connexion suivis d'une réussite depuis la même IP en 5 minutes, alerte « brute force réussi » (technique T1110).",
+"À quoi sert principalement MITRE ATT&CK pour un défenseur ?",["Cartographier les comportements adverses et évaluer sa détection","Chiffrer des disques","Gérer les mots de passe"],0,"C'est une base de connaissance des techniques d'attaque, utile pour tester ses détections."],
+["Réponse à incident et forensique",
+"<p>Cycle NIST : <b>préparation, détection et analyse, confinement/éradication/reprise, retour d'expérience</b>. Préserve les preuves : copie bit à bit du disque, hash pour prouver l'intégrité, ordre de volatilité (RAM avant disque), chaîne de traçabilité. Isole la machine du réseau sans l'éteindre si la mémoire est utile. Documente chaque action avec l'heure.</p>",
+"Ransomware détecté : isoler les hôtes, préserver les journaux et la RAM, identifier l'accès initial, restaurer depuis des sauvegardes saines, changer tous les secrets.",
+"Quelle donnée est la plus volatile et à collecter d'abord ?",["Le disque dur","La mémoire vive (RAM)","Les sauvegardes"],1,"La RAM disparaît à l'extinction : on la capture en premier."],
+["Cloud, Zero Trust et gouvernance",
+"<p><b>Zero Trust</b> : ne jamais faire confiance par défaut, vérifier identité, appareil et contexte à chaque accès. Cloud : modèle de <b>responsabilité partagée</b>, IAM en moindre privilège, chiffrement, journalisation, IaC scanné. Gouvernance : analyse de risque (EBIOS RM, ISO 27005), SMSI <b>ISO 27001</b>, conformité (RGPD), sensibilisation continue et plan de continuité.</p>",
+"Un bucket de stockage public par erreur est une des fuites cloud les plus fréquentes : la configuration reste la responsabilité du client.",
+"En cloud, qui configure correctement les accès à ses données ?",["Uniquement le fournisseur","Le client, selon la responsabilité partagée","Personne"],1,"Le fournisseur sécurise l'infrastructure, le client ses configurations et données."],
+["Kali Linux : boîte à outils d'audit autorisé",
+"<p>Kali regroupe des outils de sécurité. À utiliser <b>seulement</b> sur tes machines/labs (TryHackMe, HackTheBox, VM locales) ou avec autorisation écrite explicite.</p><pre># Reconnaissance passive/active (cible autorisée)\nnmap -sV -Pn 10.10.10.10        # services et versions\nnikto -h http://cible.local     # scan de config web basique\n\n# Analyse de vulnérabilités\nnmap --script vuln 10.10.10.10  # scripts de détection connue\n\n# Craquage de mots de passe (audit interne)\njohn --wordlist=rockyou.txt hash.txt\nhydra -L users.txt -P pass.txt ssh://10.10.10.10  # test de robustesse autorisé\n\n# Après compromission en lab : documenter\nscript rapport.txt               # enregistrer la session pour le rapport</pre>",
+"Sur HackTheBox, la cible est explicitement fournie pour l'entraînement : la même commande hydra sur un serveur d'entreprise sans accord est une attaque informatique illégale.",
+"Que faut-il obtenir avant d'utiliser hydra ou nmap --script vuln sur une machine qui ne t'appartient pas ?",["Rien, c'est un outil public","Une autorisation écrite (pentest) ou un lab dédié","Juste prévenir par SMS après coup"],1,"Sans mandat écrit ou lab prévu à cet effet, c'est une intrusion, peu importe l'outil."],
+["Équipements et environnement de lab",
+"<p>Pour pratiquer légalement : une VM Kali (VirtualBox/VMware), des machines cibles volontairement vulnérables (<b>DVWA</b>, <b>Metasploitable</b>, <b>VulnHub</b>), un réseau isolé (host-only, pas de pont vers Internet), et des plateformes en ligne cadrées (TryHackMe, HackTheBox). Matériel optionnel pour le pentest physique/radio autorisé : clé Wi-Fi compatible mode moniteur, Raspberry Pi pour du monitoring réseau — toujours dans un cadre contractuel.</p>",
+"Un lab typique : VM Kali + VM Metasploitable sur un réseau interne isolé, aucune des deux connectée à Internet, pour s'entraîner sans risque légal.",
+"Pourquoi isoler le réseau du lab d'Internet ?",["Pour aller plus vite","Pour éviter d'exposer ou d'attaquer accidentellement des tiers","Ce n'est pas nécessaire"],1,"L'isolation évite tout impact hors du périmètre autorisé."],
+["Durcissement avancé et conformité",
+"<p><b>CIS Benchmarks</b> et <b>ANSSI</b> fournissent des référentiels de durcissement (Linux, Windows, cloud). Audit automatisé : <code>lynis</code> (Linux), <code>OpenSCAP</code>. Gestion des secrets via un coffre-fort (Vault, gestionnaire cloud) plutôt qu'en clair dans le code. Principe du moindre privilège appliqué aux comptes de service, rotation régulière des clés.</p><pre>sudo lynis audit system      # audit de durcissement Linux\nsudo apt install auditd      # journal d'audit noyau\nsudo auditctl -l             # règles d'audit actives</pre>",
+"Un audit Lynis peut révéler un service SSH autorisant encore le login root direct, une non-conformité classique à corriger.",
+"À quoi sert un outil comme Lynis ?",["Attaquer un serveur distant","Auditer la configuration de sécurité d'un système","Chiffrer un disque"],1,"Lynis analyse la configuration locale et propose des corrections de durcissement."],
+["Sécurité des applications et DevSecOps",
+"<p>Intégrer la sécurité dans le pipeline CI/CD : analyse statique (<b>SAST</b>), analyse de dépendances (<b>SCA</b>), scan de conteneurs et d'images (<code>trivy</code>), tests dynamiques en environnement de préproduction (<b>DAST</b>), gestion des secrets hors du code source. Objectif : détecter tôt plutôt qu'en production.</p><pre>trivy image mon-appli:latest      # vulnérabilités connues dans l'image\nnpm audit                          # dépendances Node vulnérables\ngit secrets --scan                 # secrets oubliés dans le dépôt</pre>",
+"Un pipeline qui bloque le déploiement si <code>trivy</code> trouve une faille critique évite de mettre en production une image vulnérable connue.",
+"Que vérifie principalement un outil SCA ?",["Le style du code","Les vulnérabilités dans les dépendances tierces","La vitesse d'exécution"],1,"SCA (Software Composition Analysis) inspecte les bibliothèques utilisées pour des failles connues."],
+["Analyse de malwares (environnement isolé)",
+"<p>L'analyse se fait dans une VM isolée sans accès réseau réel (sandbox). Analyse statique : examiner le binaire sans l'exécuter (<code>file</code>, <code>strings</code>, désassembleur). Analyse dynamique : exécuter en sandbox et observer le comportement (connexions, fichiers créés, clés de registre).</p><pre>file echantillon.bin        # type de fichier\nstrings echantillon.bin | less   # chaînes lisibles, indices\nmd5sum echantillon.bin      # empreinte pour la partager aux bases de renseignement\n# Toujours dans une VM jetable, snapshot avant, réseau isolé ou simulé</pre>",
+"Un analyste malware ouvre l'échantillon uniquement dans une VM sans accès à Internet ni au réseau de l'entreprise, avec un snapshot pour revenir en arrière.",
+"Pourquoi analyser un malware dans une VM sans accès réseau réel ?",["Pour économiser la bande passante","Pour éviter qu'il ne se propage ou communique avec un serveur d'attaquant","Ce n'est pas nécessaire"],1,"Isoler l'environnement empêche le malware d'agir hors du bac à sable et de causer de vrais dégâts."],
+["Threat Intelligence et IOCs",
+"<p>Le renseignement sur la menace (CTI) collecte des <b>IOC</b> (indicateurs de compromission : hash, IP, domaine malveillant) partagés via des flux (MISP, OTX). On les intègre au SIEM pour détecter automatiquement une réapparition connue. Utile pour anticiper plutôt que seulement réagir.</p><pre># Rechercher un hash dans une base de renseignement publique\n# (à faire via l'interface web, jamais en soumettant des données confidentielles)\nsha256sum fichier_suspect > hash.txt</pre>",
+"Un flux MISP partagé entre entreprises d'un même secteur permet de bloquer automatiquement une IP déjà identifiée ailleurs comme malveillante.",
+"À quoi sert un IOC (indicateur de compromission) ?",["À chiffrer des données","À repérer la présence connue d'une menace (hash, IP, domaine)","À créer un mot de passe"],1,"Un IOC est une trace connue d'activité malveillante, utile pour la détection automatisée."],
+["Cryptographie appliquée avancée",
+"<p>Gestion de clés : rotation régulière, séparation des clés par usage, <b>HSM</b> pour protéger les clés critiques. <b>Forward secrecy</b> (Diffie-Hellman éphémère) : une clé de session compromise ne compromet pas les échanges passés. Attention aux implémentations maison : toujours utiliser des bibliothèques éprouvées (OpenSSL, libsodium), jamais son propre algorithme.</p><pre>openssl s_client -connect exemple.com:443 -tls1_2   # inspecter la négociation TLS\nopenssl x509 -in cert.pem -noout -dates              # validité d'un certificat</pre>",
+"Sans forward secrecy, le vol d'une clé privée serveur des années plus tard permettrait de déchiffrer tout le trafic historique enregistré.",
+"Que garantit le « forward secrecy » ?",["Que le site charge plus vite","Qu'une clé compromise plus tard ne permet pas de déchiffrer les sessions passées","Que le mot de passe est plus long"],1,"Chaque session utilise une clé éphémère distincte, non déductible d'une clé compromise ultérieurement."],
+["Sécurité des infrastructures industrielles (OT/ICS)",
+"<p>Les systèmes industriels (SCADA, automates) privilégient la disponibilité et la sécurité physique avant la confidentialité ; ils tournent souvent sur des protocoles anciens sans authentification (Modbus). Défense : segmentation stricte IT/OT, zones démilitarisées industrielles, surveillance passive (pas de scan actif intrusif sur des équipements fragiles), inventaire des équipements et de leurs versions.</p>",
+"Stuxnet (2010) a ciblé des automates industriels iraniens en se propageant via des clés USB, illustrant pourquoi l'isolement réseau OT/IT est critique.",
+"Pourquoi éviter un scan actif classique sur un réseau industriel fragile ?",["Parce que c'est interdit par la loi partout","Certains équipements anciens peuvent planter ou se dérégler sous une charge de scan","Ça coûte trop cher"],1,"Des automates anciens et peu robustes peuvent mal réagir à un trafic de scan inattendu, avec un risque pour la sécurité physique."],
+["Gestion de crise et communication",
+"<p>Au-delà de la technique, un incident majeur nécessite une cellule de crise (technique, juridique, communication, direction), une chronologie précise des faits, et une communication maîtrisée envers les régulateurs (obligations de notification RGPD sous 72h en cas de fuite de données), les clients et les médias. Un exercice de simulation (<i>tabletop exercise</i>) régulier prépare l'équipe avant qu'un vrai incident survienne.</p>",
+"Une fuite de données personnelles en Europe doit être notifiée à l'autorité de protection des données sous 72 heures après en avoir eu connaissance.",
+"Quel est l'intérêt d'un exercice de simulation de crise (tabletop) ?",["Remplacer les sauvegardes","Tester les procédures et la coordination avant un vrai incident","Éviter d'avoir un plan écrit"],1,"La simulation révèle les failles de coordination et de procédure sans les risques d'un vrai incident."],
+["Sécurité Kubernetes et orchestration",
+"<p>En production conteneurisée, durcir Kubernetes : RBAC strict (moindre privilège par namespace), <b>NetworkPolicy</b> pour limiter les communications entre pods, secrets chiffrés au repos, images signées et scannées avant déploiement, désactivation de l'API non authentifiée.</p><pre>kubectl get clusterrolebindings                  # qui a quels droits\nkubectl auth can-i --list --as=system:serviceaccount:default:app\nkubectl get networkpolicy -A                      # politiques réseau existantes</pre>",
+"Un pod avec des droits cluster-admin par défaut est une porte ouverte : s'il est compromis, l'attaquant contrôle tout le cluster.",
+"Que vérifie une NetworkPolicy Kubernetes ?",["Les performances CPU","Quelles communications réseau sont autorisées entre pods","La version de Kubernetes"],1,"Une NetworkPolicy définit qui peut parler à qui, réduisant la surface de mouvement latéral."],
+["Détection et réponse automatisée (SOAR)",
+"<p>Le <b>SOAR</b> orchestre des réponses automatiques à des alertes répétitives (bloquer une IP, isoler un poste, ouvrir un ticket) pour soulager l'équipe SOC des tâches répétitives et accélérer le confinement. Il s'appuie sur des <i>playbooks</i> documentés testés régulièrement.</p>",
+"Un playbook SOAR peut isoler automatiquement un poste dès qu'un EDR détecte un chiffrement de masse typique d'un ransomware, sans attendre l'intervention humaine.",
+"Quel est l'avantage principal du SOAR ?",["Remplacer complètement les analystes","Accélérer et automatiser les réponses aux incidents répétitifs","Éviter les mises à jour"],1,"Le SOAR automatise les tâches répétitives pour que les analystes se concentrent sur les cas complexes."],
+["Red team vs Blue team vs Purple team",
+"<p>La <b>Red team</b> simule un adversaire réel de façon prolongée et furtive (au-delà du pentest classique). La <b>Blue team</b> défend et détecte. La <b>Purple team</b> fait collaborer les deux pour améliorer concrètement la détection, en rejouant des techniques MITRE ATT&CK et en vérifiant si le SOC les repère.</p>",
+"Un exercice purple team rejoue une technique de mouvement latéral connue et vérifie si le SIEM génère une alerte ; sinon, une nouvelle règle de détection est créée.",
+"Quel est l'objectif principal d'un exercice purple team ?",["Uniquement trouver des failles sans les corriger","Améliorer concrètement la détection en faisant collaborer attaque et défense","Remplacer le pentest annuel"],1,"La collaboration directe entre attaquants simulés et défenseurs accélère l'amélioration de la détection."],
+["Carrière et certifications en cybersécurité",
+"<p>Repères reconnus : <b>CompTIA Security+</b> (bases), <b>eJPT/PJPT</b> (pentest débutant), <b>OSCP</b> (pentest exigeant, pratique), <b>CISSP</b> (management/gouvernance), <b>CEH</b> (généraliste). La pratique sur labs légaux (TryHackMe, HackTheBox) et les projets personnels documentés comptent souvent autant que les certifications pour démarrer.</p>",
+"Un recruteur regarde souvent un profil TryHackMe/HackTheBox actif et un blog de writeups autant qu'un diplôme, car cela prouve une pratique réelle.",
+"Quelle certification est réputée pour son exigence pratique en tests d'intrusion ?",["CompTIA Security+","OSCP","CEH"],1,"L'OSCP exige de compromettre des machines en examen pratique, réputé exigeant."]
+]]};
+let cur="debutant",done={},tot=0;
+Object.values(L).forEach(l=>tot+=l[1].length);
+const T=document.getElementById("tabs"),M=document.getElementById("mods");
+function sc(){const n=Object.values(done).filter(Boolean).length;document.getElementById("sc").textContent=n+" / "+tot+" terminés";document.getElementById("bar").style.width=(100*n/tot)+"%"}
+function show(k){cur=k;T.innerHTML="";
+for(const id in L){const b=document.createElement("button");b.textContent=L[id][0];b.setAttribute("aria-pressed",id===k);b.onclick=()=>show(id);T.appendChild(b)}
+M.innerHTML="";
+L[k][1].forEach((m,i)=>{const key=k+i,d=document.createElement("details");
+d.innerHTML="<summary><span class='dot"+(done[key]?" done":"")+"'></span>"+m[0]+"</summary><div class='body'>"+m[1]+"<div class='ex'><b>Exemple.</b> "+m[2]+"</div><div class='q'><b>Exercice.</b> "+m[3]+"</div></div>";
+const q=d.querySelector(".q"),fb=document.createElement("p");fb.className="fb";
+m[4].forEach((o,j)=>{const b=document.createElement("button");b.className="opt";b.textContent=o;
+b.onclick=()=>{const ok=j===m[5];b.classList.add(ok?"ok":"ko");fb.textContent=(ok?"Correct. ":"Pas tout à fait. ")+m[6];if(ok){done[key]=1;sc();d.querySelector(".dot").classList.add("done")}};q.appendChild(b)});
+q.appendChild(fb);M.appendChild(d)});sc()}
+show(cur);
+</script></body></html>
